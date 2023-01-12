@@ -1,0 +1,84 @@
+---
+title: "01 Fundamentals"
+output: html_notebook
+---
+Essential Thoughts:
+1. Which variable is the response variable?
+2. Which are the explanatory variables?
+3. Are the explanatory variables continuous, categorical, or a mxiture of both?
+4. What is the response variable - continuous, count, proportion, time-at-death?
+
+Response to Thoughts:
+1. Continuous Explanatories -> Regression
+2. Categorical Explanatories -> Analysis of variance (ANOVA)
+3. Mixed Explanatories -> Analysis of covariance (ANCOVA)
+4. Continuous Response -> Regression, ANOVA/ANCOVA
+5. Proportion Response -> Logistic Regression
+6. Count -> Log linear models
+7. Binary -> Binary logistic analysis
+8. Time at Death -> Survival analysis
+
+Concepts:
+1. Temporal heterogeneity (everything varies with time)
+2. Significance (is the variability due to a relation of what we are examining?)
+    -> Unlikely to have occurred by chance if the null hypothesis were true. (set at 5%)
+3. Reject the null hypothesis when it is sufficiently unlikely.
+4. _p_ value is calculated *on the assumption the null hypothesis is true*. It gives us the % that the value could have occurred by chance if the 
+  null hypothesis were true.
+
+Typical Model Choice Assumptions:
+1. Random Sampling
+2. Constant Variance
+3. Normal Erros
+4. Independent Errors
+5. Additive Effects
+
+We obtain our model of best fit through statistical modelling.
+
+Maximum Likelihood
+1. Give the data
+2. Given our choices of model
+3. What values of the parameters of that model
+4. make the observed data most likely
+
+e.g. we decide we have a linear model. y=ax+b. a, b are the parameters of that model we want to find maximum likelihood.
+
+Experimental Design:
+1. Replication - to increase reliability. Must be independent. ~30 times.
+2. Randomize - to reduce bias
+3. The Principle of Parsimony - few parameters, prefer linear to non-linear.
+4. Controls - no controls, no conclusions
+5. Power - the probability of rejecting the null hyptohesis when it is false. See code below
+
+```{r}
+power.t.test(delta=2, sd=2.8, power=0.8)
+```
+SSE is the unexplained variation that is not a block variation.
+
+Let's look at sampling:
+```{r}
+treatments <- c("aloprin", "vitex", "formixin", "panto", "allclear")
+sample(treatments)
+```
+```{r}
+sample(treatments)
+```
+Inference:
+1. Formulate a clear hypothesis
+2. Devise an acceptable test
+3. Keep the limitations of the Data clearly in mind. 
+
+Other Considerations:
+1. Initial Conditions
+2. Orthogonal/Non-Orthogonal
+3. Aliasing
+
+Summary of Statistic Models in R:
+ - lm: linear mondel, normal errors, constant variance
+ - aov: same as 'lm' but with complex errors
+ - glm: linear model, categorical or continuous, can have Poisson error structure for count data or binomial for proportion data)
+ - gam: generalized addtive model
+ - lmer: linear mixed effects.
+ - nls: fits a non-linear regression
+
+
